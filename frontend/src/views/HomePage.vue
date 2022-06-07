@@ -4,7 +4,7 @@
   </div>
 
     <div class="content" v-for="todo in todos" :key="todo.id">
-      <Todo :content="todo.name" :imgUrl="todo.imgUrl" :id="todo.id" :progress=false @changedProgress="toggleOngoing" @remmed="removeTodo" @updatedContent="changeContent"/>
+      <Todo :name="todo.name" :game="todo.game" :imgUrl="todo.imgUrl" :id="todo.id" :progress=false @changedProgress="toggleOngoing" @remmed="removeTodo" @updatedContent="changeContent"/>
     </div>
     <NewTodo @addtodo="updateTodos"/>
 </template>

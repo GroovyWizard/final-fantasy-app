@@ -3,15 +3,15 @@
   <div class="todo">
     <div class="colorline" />
     <div class="todobg" />
+  
     <div v-if="!editing">
       <div class="todotext">
         <img class="characterImage" v-bind:src="imgUrl">
-        {{ content }}
+        {{ name }} - {{ game }}
       </div>
+
       <div class="controlButtons">
         <button class="controlButtonEdit material-icons" @click="nowEditing">Editar </button>
-        <button class="controlButtonDone material-icons" :class="{ 'controlButtonDoneCompleted': !progress }"
-          @click="toggleTodo">Terminar</button>
         <button class="controlButtonCancel material-icons" @click="rem">Deletar</button>
       </div>
     </div>
@@ -31,18 +31,19 @@
 import { ref } from 'vue'
 import axios from 'axios'
 export default {
-  props: ['content', 'id', 'progress', 'imgUrl'],
+  props: ['name', 'id', 'game', 'progress', 'imgUrl'],
   emits: ['changedProgress', 'remmed', 'updatedContent'],
   setup(props, { emit }) {
     const editing = ref(false)
+    const updated = ref(false)
     const newContent = ref('')
     function toggleTodo() {
       emit('changedProgress', props.id)
     }
     function rem() {
       console.log(props.id)
-      axios.delete(`https://localhost:7022/Character/${props.id}`, 
-       { data: { id: props.id}, headers: {}})
+      axios.delete(`https://localhost:7022/Character/${props.id}`,
+        { data: { id: props.id }, headers: {} })
         .then(() => {
           alert("Personagem deletado com sucesso")
         })
@@ -53,17 +54,28 @@ export default {
     }
     function nowEditing() {
       editing.value = true
-      newContent.value = props.content
+      newContent.value = props.name
     }
     function updateTodo() {
       if (newContent.value.length > 0) {
-        emit('updatedContent', props.id, newContent.value)
+        sendUpdate(props.id, newContent.value)
         newContent.value = ''
         editing.value = false
       }
     }
     function cancelUpdateTodo() {
       editing.value = false
+    }
+    function sendUpdate(id, value) {
+      console.log(id, value)
+      axios.put(`https://localhost:7022/Character/${id}/${value}`)
+        .then(() => {
+          updated.value = true
+        })
+        .catch(() => {
+        }).finally(() => {
+          updated.value = true
+        });
     }
     return { toggleTodo, rem, editing, newContent, nowEditing, updateTodo, cancelUpdateTodo }
   }
@@ -97,9 +109,9 @@ export default {
   top: 2%;
   left: 0;
   margin: auto;
-  z-index: -2;
+  z-index: -1;
   margin: auto;
-  background: cyan;
+  background: purple;
   border-radius: 20px;
   height: 96%;
   width: 100%;
@@ -138,14 +150,12 @@ export default {
 .controlButtonCancel,
 .controlButtonEdit,
 .controlButtonAdd {
-  color: black;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-  border: none;
-  text-align: center;
-  background: whitesmoke;
-  transition: all 0.2s ease;
+  background: indigo;
+  border: 0;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.4s ease;
 }
 
 .controlButtonDone:hover,

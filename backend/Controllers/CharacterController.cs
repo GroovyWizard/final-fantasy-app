@@ -46,6 +46,22 @@ public class CharacterController : ControllerBase
         return NoContent();
     }
 
+    [HttpPut("{id}/{name}")]
+    public IActionResult Update(int id, string name )
+    {
+        if (name is null)
+            return BadRequest();
+        Console.WriteLine(name);
+            
+        var existingCharacter = CharacterModelService.Get(id);
+        if(existingCharacter is null)
+            return NotFound();
+        Console.WriteLine(name);
+        CharacterModelService.Update(existingCharacter, name);           
+    
+        return NoContent();
+}
+
 
 
 

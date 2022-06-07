@@ -53,12 +53,9 @@ public static class CharacterModelService
         db.SaveChanges();
     }
 
-    // public static void Update(CharacterModel CharacterModel)
-    // {
-    //     var index = CharacterModels.FindIndex(c => c.Id == CharacterModel.Id);
-    //     if (index == -1)
-    //         return;
-
-    //     CharacterModels[index] = CharacterModel;
-    // }
+    public static void Update(CharacterModel CharacterModel, string name)
+    {
+        CharacterModel.Name = name;
+        db.SaveChanges();
+    }
 }
