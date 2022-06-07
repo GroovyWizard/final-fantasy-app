@@ -1,8 +1,5 @@
 <template>
   <div class="navv">
-    <span :class="{'navs' : !view_all, 'navs-active' : view_all}" @click="selectNav(1)">VIEW ALL</span>
-    <span :class="{'navs' : !completed, 'navs-active' : completed}" @click="selectNav(2)">COMPLETED</span>
-    <span :class="{'navs' : !ongoing, 'navs-active' : ongoing}" @click="selectNav(3)">ONGOING</span>
     <span :class="{'navsPlus' : !addit, 'navs-activePlus' : addit}" @click="selectNav(4)">+</span>
   </div>
 
@@ -39,76 +36,6 @@ export default {
    created() { 
          this.getData();
   },
- 
-
-  // setup(){
-  //   //initial navigation
-  //   const view_all = ref(true)
-  //   const completed = ref(false)
-  //   const ongoing = ref(false)
-  //   const addit = ref(false)
-  //   function selectNav(num){
-  //     if(view_all.value && num != 1){
-  //       view_all.value = false;
-  //     }
-  //     if(completed.value && num != 2){
-  //       completed.value = false;
-  //     }
-  //     if(ongoing.value && num != 3){
-  //       ongoing.value = false;
-  //     }
-  //     if(addit.value && num != 4){
-  //       addit.value = false;
-  //     }
-  //     if(num == 1){
-  //       view_all.value = true;
-  //     }
-  //     else if(num == 2){
-  //       completed.value = true;
-  //     }
-  //     else if(num == 3){
-  //       ongoing.value = true;
-  //     }
-  //     else{
-  //       addit.value = true;
-  //     }
-  //   }
-  //   //main todo content
-    
-  //   const Completed = computed(() => {
-  //     return todos
-  //   })
-  //   const Ongoing = computed(() => {
-  //     return todos
-  //   })
-  //   function toggleOngoing(theId){
-  //     todos.value.forEach((todo) => {
-  //       if(todo.id == theId){
-  //         todo.inProgress = !todo.inProgress
-  //       }
-  //     })
-  //   }
-  //   function removeTodo(theId){
-  //     let idx = 1
-  //     todos.value = todos.value.filter((todo) => todo.id != theId)
-  //     todos.value.forEach((todo) => {
-  //       todo.id = idx;
-  //       idx++
-  //     })
-  //   }
-  //   function updateTodos(stuff){
-  //     todos.value.push({content: stuff, inProgress: true, id: todos.value.length + 1})
-  //   }
-  //   function changeContent(theId, newContent){
-  //     todos.value.forEach((todo) => {
-  //       if(todo.id == theId){
-  //         todo.content = newContent
-  //       }
-  //     })
-  //   }
-    
-  //   return {view_all, completed, ongoing, addit, selectNav, todos, Completed, Ongoing, toggleOngoing, removeTodo, updateTodos, changeContent}
-  // }
   
 }
 </script>

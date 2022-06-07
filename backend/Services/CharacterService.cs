@@ -45,11 +45,12 @@ public static class CharacterModelService
 
     public static void Delete(int id)
     {
-        var CharacterModel = db.Characters.Find(id);
+        var CharacterModel = db.Characters.FirstOrDefault(p => p.Id == id);
         if (CharacterModel is null)
             return;
 
         db.Remove(CharacterModel);
+        db.SaveChanges();
     }
 
     // public static void Update(CharacterModel CharacterModel)

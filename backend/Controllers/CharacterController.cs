@@ -33,6 +33,18 @@ public class CharacterController : ControllerBase
         return CreatedAtAction(nameof(Create), new { id = character.Id }, character);
     }
 
+    [HttpDelete("{id}")]
+    public IActionResult Delete(int id)
+    {
+        var character = CharacterModelService.Get(id);
+    
+        if (character is null)
+            return NotFound();
+        
+        CharacterModelService.Delete(id);
+    
+        return NoContent();
+    }
 
 
 

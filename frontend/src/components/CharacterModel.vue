@@ -29,6 +29,7 @@
 
 <script>
 import { ref } from 'vue'
+import axios from 'axios'
 export default {
   props: ['content', 'id', 'progress', 'imgUrl'],
   emits: ['changedProgress', 'remmed', 'updatedContent'],
@@ -39,7 +40,16 @@ export default {
       emit('changedProgress', props.id)
     }
     function rem() {
-      emit('remmed', props.id)
+      console.log(props.id)
+      axios.delete(`https://localhost:7022/Character/${props.id}`, 
+       { data: { id: props.id}, headers: {}})
+        .then(() => {
+          alert("Personagem deletado com sucesso")
+        })
+        .catch(() => {
+          alert("Um erro ocorreu")
+        }).finally(() => {
+        });
     }
     function nowEditing() {
       editing.value = true
