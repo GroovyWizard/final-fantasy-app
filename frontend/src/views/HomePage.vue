@@ -26,7 +26,7 @@ export default {
    methods: {
     async getData() {
       try {
-        let response = await fetch("https://localhost:7022/character");
+        let response = await fetch("https://localhost:7022/Character");
         this.todos = await response.json();
       } catch (error) {
         console.log(error);

@@ -10,7 +10,9 @@ builder.Services.AddCors(options =>
                       policy =>
                       {
                           policy.WithOrigins("*",
-                                              "http://127.0.0.1:8080")
+                                              "http://127.0.0.1:8080", 
+                                              "http://localhost:8080",
+                                              "http://10.11.2.179:8080/")
                                               .AllowAnyHeader()
                                               .AllowAnyMethod();
                       });
@@ -30,9 +32,9 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(
-        c =>  
-        {  
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Test1 Api v1");  
+        c =>
+        {
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Test1 Api v1");
         }
     );
 }
