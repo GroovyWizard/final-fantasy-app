@@ -29,6 +29,7 @@ export default {
         let response = await fetch("https://localhost:7022/Character");
         this.todos = await response.json();
       } catch (error) {
+        alert("Verifique se a API está rodando no port 7022!")
         console.log(error);
       }
     },
