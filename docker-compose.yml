@@ -2,5 +2,8 @@ version: '3.4'
 
 services:
   api:
+    ports:
+      - 8090:80
     build:
-      dockerfile: ./backend/Dockerfile
+      context: ./backend
+      dockerfile: ./Dockerfile

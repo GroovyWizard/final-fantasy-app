@@ -1,3 +1,6 @@
+using backend.Models;
+using Microsoft.EntityFrameworkCore;
+
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 
@@ -24,6 +27,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+var characterContext = new CharacterContext();
+characterContext.Database.Migrate(); 
 
 var app = builder.Build();
 
@@ -48,3 +53,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
